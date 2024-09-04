@@ -3,3 +3,9 @@
 //
 
 #include "MenuItem.h"
+#include <string>
+
+class MenuItem {
+    string itemName;
+    double price;
+};
