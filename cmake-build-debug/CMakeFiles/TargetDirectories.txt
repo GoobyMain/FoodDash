@@ -1,3 +1,0 @@
-C:/Users/Tongx/CLionProjects/FoodDash/cmake-build-debug/CMakeFiles/FoodDash.dir
-C:/Users/Tongx/CLionProjects/FoodDash/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Tongx/CLionProjects/FoodDash/cmake-build-debug/CMakeFiles/rebuild_cache.dir
