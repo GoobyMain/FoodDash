@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Admin/Downloads/Files/School/Computer Science C++ (CSCI 41)/Projects/FoodDash/cmake-build-debug",
-		"source" : "C:/Users/Admin/Downloads/Files/School/Computer Science C++ (CSCI 41)/Projects/FoodDash"
+		"build" : "C:/Users/Tongx/CLionProjects/FoodDash/cmake-build-debug",
+		"source" : "C:/Users/Tongx/CLionProjects/FoodDash"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }
