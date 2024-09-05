@@ -16,12 +16,12 @@ class Order {
 
 private:
 
+    static unsigned int nextOrderNumber;
+
     std::string ordererName;
     unsigned int orderNumber;
     std::vector<MenuItem> orderItems;
     bool orderComplted;
-
-    orderCompleted = false;
 
 
 public:

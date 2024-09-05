@@ -16,7 +16,7 @@ private:
     };
 
 public:
-    std::string getItemName() {}
+    std::string getItemName() { return itemName; }
     float getItemPrice() { return itemPrice; }
 };
 
