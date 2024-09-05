@@ -5,14 +5,13 @@
 #include "Order.h"
 
 
-Order::nextOrderNumber = 1;
 
 Order::Order(std::string ordererName) {
 
         ordererName = ordererName;
 
-        orderNumber = this->nextOrderNumber + 1;
-        orderNumber++;
+        orderNumber = this->nextOrderNumber;
+        this->nextOrderNumber++;
 }
 
 Order::Order() : Order("No Name Given") {}
@@ -21,9 +20,14 @@ Order::Order() : Order("No Name Given") {}
 std::string Order::getOrderName() {
     return ordererName;
 }
-int getOrderNumber();
+int getOrderNumber() {
+    return orderNumber;
+}
 std::vector<MenuItem> getOrderItems();
 bool getOrderCompleted();
 
 float totalPrice();
 void completeOrder();
+
+
+unsigned int Order::nextOrderNumber = 1;
