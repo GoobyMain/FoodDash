@@ -10,14 +10,14 @@
 // When an order is created it must set (a) a name for the order, (b) a number for the order,
 // (c) increment the number for the next order, (d) and set itself to not completed.
 
-Order::Order(std::string Name) { // nextOrderNumber initialized Variable (Initializing as list)
+Order::Order(std::string Name) {
     ordererName = Name;
     orderCompleted = false;
 
     orderNumber = nextOrderNumber;
     nextOrderNumber++;
     std::cout << ordererName << std::endl;
-    std::cout << nextOrderNumber << std::endl; // if static cant use this->nextOrderNumber bc, static belongs to all class, not a specific instance
+    std::cout << nextOrderNumber << std::endl; // static cant use this->nextOrderNumber bc, static belongs to all class, not a specific instance
 }
 
 Order::Order() : Order("No Name Given") {}
