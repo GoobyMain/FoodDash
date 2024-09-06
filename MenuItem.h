@@ -8,16 +8,13 @@
 class MenuItem {
 private:
     std::string itemName;
-    float itemPrice;
-
-    MenuItem(std::string name, float price) {
-        itemName = name;
-        itemPrice = price;
-    };
+    float itemPrice{};
 
 public:
-    std::string getItemName() { return itemName; }
-    float getItemPrice() { return itemPrice; }
+    MenuItem(const std::string& itemName, float itemPrice);
+
+    std::string getItemName();
+    float getItemPrice();
 };
 
 

@@ -16,8 +16,7 @@ class Order {
 
 private:
 
-    static unsigned int nextOrderNumber;
-
+    inline static int nextOrderNumber = 0;
     std::string ordererName;
     unsigned int orderNumber;
     std::vector<MenuItem> orderItems;
@@ -41,7 +40,6 @@ public:
 
 };
 
-static unsigned int nextOrderNumber = 1;
 
 
 #endif //FOODDASH_ORDER_H

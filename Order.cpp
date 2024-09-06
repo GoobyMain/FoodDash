@@ -10,14 +10,14 @@
 // When an order is created it must set (a) a name for the order, (b) a number for the order,
 // (c) increment the number for the next order, (d) and set itself to not completed.
 
-Order::Order(std::string ordererName) {
+Order::Order(std::string Name) { // nextOrderNumber initialized Variable (Initializing as list)
+    ordererName = Name;
+    orderCompleted = false;
 
-        ordererName = ordererName;
-        orderCompleted = false;
-
-        orderNumber = this->nextOrderNumber;
-        this->nextOrderNumber++;
-
+    orderNumber = nextOrderNumber;
+    nextOrderNumber++;
+    std::cout << ordererName << std::endl;
+    std::cout << nextOrderNumber << std::endl; // if static cant use this->nextOrderNumber bc, static belongs to all class, not a specific instance
 }
 
 Order::Order() : Order("No Name Given") {}
@@ -46,13 +46,15 @@ float Order::totalPrice() {
     int runningTotal = 0;
 
     // Iterate through each item in the order, add the price of the item to running total
-    for (int &i : orderItems) {
+    // for (int &i : orderItems) {
+    //
+    //     runningTotal += i.itemPrice;
+    //
+    // }
+    //
+    // return runningTotal;
 
-        runningTotal += i.itemPrice;
-
-    }
-
-    return runningTotal;
+    return 1;
 
 }
 
