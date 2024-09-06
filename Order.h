@@ -21,7 +21,7 @@ private:
     std::string ordererName;
     unsigned int orderNumber;
     std::vector<MenuItem> orderItems;
-    bool orderComplted;
+    bool orderCompleted;
 
 
 public:
@@ -40,6 +40,8 @@ public:
 
 
 };
+
+static unsigned int nextOrderNumber = 1;
 
 
 #endif //FOODDASH_ORDER_H
