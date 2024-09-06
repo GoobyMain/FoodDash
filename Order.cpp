@@ -5,29 +5,58 @@
 #include "Order.h"
 
 
+// Constructors
+
+// When an order is created it must set (a) a name for the order, (b) a number for the order,
+// (c) increment the number for the next order, (d) and set itself to not completed.
 
 Order::Order(std::string ordererName) {
 
         ordererName = ordererName;
+        orderCompleted = false;
 
         orderNumber = this->nextOrderNumber;
         this->nextOrderNumber++;
+
 }
 
 Order::Order() : Order("No Name Given") {}
 
 
+// Getters
 std::string Order::getOrderName() {
     return ordererName;
 }
-int getOrderNumber() {
+int Order::getOrderNumber() {
     return orderNumber;
 }
-std::vector<MenuItem> getOrderItems();
-bool getOrderCompleted();
+std::vector<MenuItem> Order::getOrderItems() {
+    return orderItems;
+}
+bool Order::getOrderCompleted() {
+    return orderCompleted;
+}
 
-float totalPrice();
-void completeOrder();
 
+// Class Functions
 
-unsigned int Order::nextOrderNumber = 1;
+// Returns the price of all the items in the order added together
+float Order::totalPrice() {
+
+    int runningTotal = 0;
+
+    // Iterate through each item in the order, add the price of the item to running total
+    for (int &i : orderItems) {
+
+        runningTotal += i.itemPrice;
+
+    }
+
+    return runningTotal;
+
+}
+
+// Mark order as complete
+void Order::completeOrder() {
+    orderCompleted = true;
+}
