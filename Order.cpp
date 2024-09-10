@@ -43,18 +43,16 @@ bool Order::getOrderCompleted() {
 // Returns the price of all the items in the order added together
 float Order::totalPrice() {
 
-    int runningTotal = 0;
+    float runningTotal = 0;
 
-    // Iterate through each item in the order, add the price of the item to running total
-    // for (int &i : orderItems) {
-    //
-    //     runningTotal += i.itemPrice;
-    //
-    // }
-    //
-    // return runningTotal;
+     // Iterate through each item in the order, add the price of the item to running total
+     for (MenuItem &currentItem : orderItems) {
 
-    return 1;
+         runningTotal += currentItem.getItemPrice();
+
+     }
+
+     return runningTotal;
 
 }
 
