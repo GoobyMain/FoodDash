@@ -20,13 +20,14 @@ private:
 
     std::string ordererName;
     unsigned int orderNumber;
-    std::vector<MenuItem> orderItems;
     bool orderCompleted;
 
 
 public:
 
-    Order(std::string ordererName);
+    std::vector<MenuItem> orderItems;
+
+    Order( std::string name );
     Order();
 
     std::string getOrderName();

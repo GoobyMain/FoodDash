@@ -2,14 +2,25 @@
 // Created by Admin on 9/4/2024.
 //
 
-#include "MenuItem.h"
 #include <string>
-using namespace std;
+
+#include "MenuItem.h"
 
 
-// MenuItem::MenuItem(const std::string& itemName, float itemPrice) {}; // Constructor
-//
-// string MenuItem::getItemName() {
-//     std::cout << "Item Name: " << this->itemName << std::endl;
-//     return "";
-// }
+// Constructors
+MenuItem::MenuItem(const std::string& name, float price) {
+
+    this->itemName = name;
+    this->itemPrice = price;
+
+}
+
+// Getters
+std::string MenuItem::getItemName() {
+    return itemName;
+}
+float MenuItem::getItemPrice() {
+    return itemPrice;
+}
+
+

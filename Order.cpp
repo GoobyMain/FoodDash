@@ -2,6 +2,9 @@
 // Created by Admin on 9/4/2024.
 //
 
+#include <string>
+#include <vector>
+
 #include "Order.h"
 
 
@@ -10,14 +13,14 @@
 // When an order is created it must set (a) a name for the order, (b) a number for the order,
 // (c) increment the number for the next order, (d) and set itself to not completed.
 
-Order::Order(std::string Name) {
-    ordererName = Name;
+Order::Order( std::string name ) {
+
+    ordererName = name;
     orderCompleted = false;
 
     orderNumber = nextOrderNumber;
     nextOrderNumber++;
-    std::cout << ordererName << std::endl;
-    std::cout << nextOrderNumber << std::endl; // static cant use this->nextOrderNumber bc, static belongs to all class, not a specific instance
+
 }
 
 Order::Order() : Order("No Name Given") {}
