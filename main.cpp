@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-#include "MenuItem.cpp"
+#include "MenuItem.h" //including .cpp causes an error because when it includes the cpp file, it runs all the code in it, meaning it ran the declarations twice
 #include "Order.h"
 
 int main() {
