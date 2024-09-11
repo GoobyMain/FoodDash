@@ -6,7 +6,7 @@
 #define FOODDASH_DELIVERYORDER_H
 
 
-#include <string> // don't technically have to do this because order.h is included and already includes the string library, but I like putting it here so you can tell it's going to be used in the class
+#include <string>
 
 #include "Order.h"
 
@@ -14,6 +14,8 @@
 class DeliveryOrder : public Order {
 
 private:
+
+    inline static unsigned int nextDeliveryOrderNumber = 1;
 
     std::string deliveryAddress;
     bool orderDelivered;

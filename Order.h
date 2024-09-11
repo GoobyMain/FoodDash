@@ -14,7 +14,7 @@
 
 class Order {
 
-private:
+protected:
 
     inline static unsigned int nextOrderNumber = 1;
 
