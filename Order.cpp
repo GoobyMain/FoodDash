@@ -41,7 +41,7 @@ bool Order::getOrderCompleted() {
 }
 
 
-// Class Functions
+// Class Methods
 
 // Returns the price of all the items in the order added together
 float Order::totalPrice() {
