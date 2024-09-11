@@ -24,8 +24,8 @@ public:
     DeliveryOrder( std::string name, std::string address );
     DeliveryOrder( std::string address );
 
-    std::string getDeliveryAddress;
-    bool getOrderDelivered;
+    std::string getDeliveryAddress();
+    bool getOrderDelivered();
 
     void markOrderDelivered();
 
