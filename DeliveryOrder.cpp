@@ -9,10 +9,16 @@
 
 // When a delivery order is created it must set an address for the delivery,
 // set itself to not delivered, as well as everything else for a normal order.
-DeliveryOrder::DeliveryOrder( std::string name, std::string address ) : Order(name) {
+DeliveryOrder::DeliveryOrder( std::string name, std::string address ) {
+
+    ordererName = name;
+    orderCompleted = false;
 
     deliveryAddress = address;
     orderDelivered = false;
+
+    orderNumber = nextDeliveryOrderNumber;
+    nextDeliveryOrderNumber++;
 
 }
 
