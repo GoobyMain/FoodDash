@@ -27,15 +27,17 @@ Order::Order() : Order("No Name Given") {}
 
 
 // Getters
-std::string Order::getOrderName() {
+std::string Order::getOrderName() {// print order name
     return ordererName;
 }
 int Order::getOrderNumber() {
     return orderNumber;
 }
+
 std::vector<MenuItem> Order::getOrderItems() {
     return orderItems;
 }
+
 bool Order::getOrderCompleted() {
     return orderCompleted;
 }

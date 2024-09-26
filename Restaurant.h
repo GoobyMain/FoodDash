@@ -26,8 +26,8 @@ class Restaurant {
     void addMenuItem(MenuItem object);
 
     //Only names that match items on the restaurants menu should be added
-    // Order Objects take MenuItem objects and not just the same.
-    void makeOrder(Order object, vector<MenuItem> menuItems);
+    // Order Objects take MenuItem objects and not just the same copy.
+    void makeOrder(Order&, vector<MenuItem>);
 
     //does what makeOrder do, but also takes an address and creates the
     //correct type of deliveryOrder object and fills data members appropriately
