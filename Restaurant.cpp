@@ -6,6 +6,7 @@
 
 #include "Restaurant.h"
 #include "MenuItem.h"
+#include "DeliveryOrder.h"
 
 Restaurant::Restaurant(string name) {
     this->name = name;
@@ -31,12 +32,13 @@ void Restaurant::displayMenu() {
 }
 
 void Restaurant::makeOrder(Order& order, vector<MenuItem> items) {
-    std::cout << order.getOrderName() << std::endl;
 
     /*
-     iterate through items (the vector of items wanting to be ordered)
-     If the items matches theMenu name, add it to std::vector<MenuItem> orderItems -> "Order.h";
-     */
+    iterate through items (the vector of items wanting to be ordered)
+    If the items matches theMenu name, add it to std::vector<MenuItem> orderItems -> "Order.h";
+    makes theMenu
+    */
+
     for (auto & i : items) {
         for (auto & j : theMenu) {
             if (i.getItemName() == j.getItemName()) {
@@ -45,5 +47,39 @@ void Restaurant::makeOrder(Order& order, vector<MenuItem> items) {
         };
     };
 };
+
+void Restaurant::makeDeliveryOrder(Order& order, vector<MenuItem> items, string address) {
+    //Make DeliveryMenu
+    for (auto & i : items) {
+        for (auto & j : theMenu) {
+            if (i.getItemName() == j.getItemName()) {
+                order.orderItems.push_back(i);
+            };
+        };
+    };
+};
+
+void Restaurant::markComplete(Order& order) {
+    order.completeOrder();
+    completedOrders.push_back(order); // holds all orders that are marked completed ? ?
+}
+
+void Restaurant::markDelivered(DeliveryOrder& deOrder) {
+    deOrder.markOrderDelivered();
+}
+
+double Restaurant::totalRevenue() {
+    // All completed orders total Revenue
+    double totalRevenue = 0;
+    for (auto & order : completedOrders) {
+        totalRevenue += order.totalPrice();
+    }
+    return totalRevenue;
+};
+
+void Restaurant::displayUnfilledOrders() {
+
+}
+
 
 

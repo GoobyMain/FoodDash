@@ -22,7 +22,6 @@ private:
 
 
 public:
-
     DeliveryOrder( std::string name, std::string address );
     DeliveryOrder( std::string address );
 
