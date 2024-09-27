@@ -19,7 +19,7 @@ class Restaurant {
     string name;
     vector<MenuItem> theMenu;
     vector<Order> completedOrders;
-    vector<Order*> theOrders;
+    vector<Order> theOrders;
 
 
     public:

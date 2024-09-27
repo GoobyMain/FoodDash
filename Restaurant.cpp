@@ -36,7 +36,6 @@ void Restaurant::makeOrder(Order& order, vector<MenuItem> items) {
     /*
     iterate through items (the vector of items wanting to be ordered)
     If the items matches theMenu name, add it to std::vector<MenuItem> orderItems -> "Order.h";
-    makes theMenu
     */
 
     for (auto & i : items) {
@@ -46,6 +45,7 @@ void Restaurant::makeOrder(Order& order, vector<MenuItem> items) {
             };
         };
     };
+    theOrders.push_back(order);
 };
 
 void Restaurant::makeDeliveryOrder(Order& order, vector<MenuItem> items, string address) {
@@ -57,28 +57,51 @@ void Restaurant::makeDeliveryOrder(Order& order, vector<MenuItem> items, string 
             };
         };
     };
+    theOrders.push_back(order);
 };
 
 void Restaurant::markComplete(Order& order) {
-    order.completeOrder();
-    completedOrders.push_back(order); // holds all orders that are marked completed ? ?
+    string name = order.getOrderName();
+    for (auto & currentOrder : theOrders) {
+        if (name == currentOrder.getOrderName()) {
+            currentOrder.completeOrder();
+        }
+    }
 }
 
 void Restaurant::markDelivered(DeliveryOrder& deOrder) {
-    deOrder.markOrderDelivered();
+    string name = deOrder.getOrderName();
+    for (auto & currentOrder : theOrders) {
+        if (name == currentOrder.getOrderName()) {
+            currentOrder.completeOrder();
+        }
+    }
 }
 
 double Restaurant::totalRevenue() {
     // All completed orders total Revenue
     double totalRevenue = 0;
-    for (auto & order : completedOrders) {
-        totalRevenue += order.totalPrice();
+    for (auto & order : theOrders) {
+        if (order.getOrderCompleted()) {
+            totalRevenue += order.totalPrice();
+        }
     }
     return totalRevenue;
 };
 
 void Restaurant::displayUnfilledOrders() {
-
+    for (auto & order : theOrders) {
+        if (order.getOrderCompleted() == false) {
+            std::cout << "Order Name: " << order.getOrderName() << std::endl
+            << "Order Number: " << order.getOrderNumber() << std::endl
+            << "Price: " << order.totalPrice() << std::endl;
+            for (auto & item : order.getOrderItems()) {
+                std::cout << "Item Name: " << item.getItemName() << std::endl;
+            }
+            return;
+        }
+    }
+    std::cout << "all orders completed";
 }
 
 
