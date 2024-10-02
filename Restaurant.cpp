@@ -1,108 +1,146 @@
-//
-// Created by Admin on 9/4/2024.
-// dont forget to add std::
-#include <stdio.h>
-#include <string>
-
 #include "Restaurant.h"
-#include "MenuItem.h"
-#include "DeliveryOrder.h"
 
-Restaurant::Restaurant(string name) {
+
+// Constructors
+
+Restaurant::Restaurant( const std::string& name ) {
+
     this->name = name;
+    restaurantTotalRevenue = 0;
+
 }
 
-string Restaurant::getName() {
+
+// Getters
+
+std::string Restaurant::getName() {
     return name;
 }
 
-void Restaurant::addMenuItem(MenuItem object) {
 
-    // add menu items
-    theMenu.push_back(object);
+// Class Methods
+
+void Restaurant::addMenuItem( MenuItem item ) {
+    menu.push_back(item);
 }
 
-void Restaurant::displayMenu() {
-    for (auto & i : theMenu) {
+// Create new order using Order constructor, add it to restaurant orders,
+// and return the address for that order
+Order* Restaurant::makeOrder( std::string orderName ) {
 
-        // print both item name and item price
-        std::cout << i.getItemName() << std::endl;
-        std:: cout << i.getItemPrice() << std::endl;
-    }
-}
+    Order* tempOrder = new Order(orderName);
 
-void Restaurant::makeOrder(Order& order, vector<MenuItem> items) {
+    orders.push_back(tempOrder);
 
-    /*
-    iterate through items (the vector of items wanting to be ordered)
-    If the items matches theMenu name, add it to std::vector<MenuItem> orderItems -> "Order.h";
-    */
+    return tempOrder;
 
-    for (auto & i : items) {
-        for (auto & j : theMenu) {
-            if (i.getItemName() == j.getItemName()) {
-                order.orderItems.push_back(i);
-            };
-        };
-    };
-    theOrders.push_back(order);
 };
 
-void Restaurant::makeDeliveryOrder(Order& order, vector<MenuItem> items, string address) {
-    //Make DeliveryMenu
-    for (auto & i : items) {
-        for (auto & j : theMenu) {
-            if (i.getItemName() == j.getItemName()) {
-                order.orderItems.push_back(i);
-            };
-        };
-    };
-    theOrders.push_back(order);
+Order* Restaurant::makeOrder() {
+
+    Order* tempOrder = new Order();
+
+    orders.push_back(tempOrder);
+
+    return tempOrder;
+
 };
 
-void Restaurant::markComplete(Order& order) {
-    string name = order.getOrderName();
-    for (auto & currentOrder : theOrders) {
-        if (name == currentOrder.getOrderName()) {
-            currentOrder.completeOrder();
-        }
-    }
-}
+DeliveryOrder* Restaurant::makeDeliveryOrder( std::string orderName, std::string address ) {
 
-void Restaurant::markDelivered(DeliveryOrder& deOrder) {
-    string name = deOrder.getOrderName();
-    for (auto & currentOrder : theOrders) {
-        if (name == currentOrder.getOrderName()) {
-            currentOrder.completeOrder();
-        }
-    }
-}
+    DeliveryOrder* tempOrder = new DeliveryOrder(orderName, address);
 
-double Restaurant::totalRevenue() {
-    // All completed orders total Revenue
-    double totalRevenue = 0;
-    for (auto & order : theOrders) {
-        if (order.getOrderCompleted()) {
-            totalRevenue += order.totalPrice();
-        }
-    }
-    return totalRevenue;
+    orders.push_back(tempOrder);
+
+    return tempOrder;
+
 };
 
-void Restaurant::displayUnfilledOrders() {
-    for (auto & order : theOrders) {
-        if (order.getOrderCompleted() == false) {
-            std::cout << "Order Name: " << order.getOrderName() << std::endl
-            << "Order Number: " << order.getOrderNumber() << std::endl
-            << "Price: " << order.totalPrice() << std::endl;
-            for (auto & item : order.getOrderItems()) {
-                std::cout << "Item Name: " << item.getItemName() << std::endl;
-            }
-            return;
-        }
-    }
-    std::cout << "all orders completed";
+DeliveryOrder* Restaurant::makeDeliveryOrder( std::string address ) {
+
+    DeliveryOrder* tempOrder = new DeliveryOrder(address);
+
+    orders.push_back(tempOrder);
+
+    return tempOrder;
+
+};
+
+// marks an order as complete, adds the cost of the order to the restaurant revenue
+void Restaurant::markComplete( Order*& order ) {
+
+    order->completeOrder();
+
+    restaurantTotalRevenue += order->totalPrice();
+
 }
 
+void Restaurant::markComplete( DeliveryOrder*& order ) {
+    order->completeOrder();
+}
+
+// marks a delivery order as delivered, adds the cost of the order to the restaurant revenue
+void Restaurant::markDelivered( DeliveryOrder*& order ) {
+
+    order->markOrderDelivered();
+
+    restaurantTotalRevenue += order->totalPrice();
+
+}
+
+// return total revenue from all orders marked complete
+double Restaurant::totalRevenue() const {
+    return restaurantTotalRevenue;
+};
+
+// display the name of the restaurant and menu item and prices available
+void Restaurant::displayMenu() const {
+
+    // print restaurant name once
+    std::cout << this->name << " Menu:\n";
+
+    // print name and price for all items in menu
+    for (auto & item : menu) {
+
+        std::cout << std::left << std::setw(30) << item.getItemName()
+                  << item.getItemPrice() << "\n";
+
+    }
+
+    std::cout << "\n";
+
+}
+
+// display details for all orders yet not completed
+void Restaurant::displayUnfilledOrders() const {
+
+    // track if orders contains any incomplete orders
+    bool incompleteOrdersExist = false;
 
 
+    // print restaurant name once
+    std::cout << this->name << " Unfulfilled Orders:\n\n";
+
+    // for each incomplete order, display details
+    for ( auto & order : orders ) {
+
+        if ( order->getOrderCompleted() ) {
+
+            continue;
+
+        } else {
+
+            incompleteOrdersExist = true;
+
+            order->displayOrder();
+
+        }
+
+    }
+
+    // print this since nothing prints when there's no incomplete orders
+    if ( !incompleteOrdersExist ) {
+        std::cout << "All orders completed\n\n";
+    }
+
+}

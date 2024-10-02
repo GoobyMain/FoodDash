@@ -1,7 +1,3 @@
-//
-// Created by Admin on 9/4/2024.
-//
-
 #ifndef FOODDASH_DELIVERYORDER_H
 #define FOODDASH_DELIVERYORDER_H
 
@@ -22,13 +18,15 @@ private:
 
 
 public:
-    DeliveryOrder( std::string name, std::string address );
-    DeliveryOrder( std::string address );
 
-    std::string getDeliveryAddress();
-    bool getOrderDelivered();
+    DeliveryOrder( const std::string& name, const std::string& address );
+    DeliveryOrder( const std::string& address );
+
+    std::string getDeliveryAddress() const;
+    bool getOrderDelivered() const;
 
     void markOrderDelivered();
+    void displayOrder() const override;
 
 };
 

@@ -1,20 +1,26 @@
-#include <iostream>
-#include <string>
-
 #ifndef FOODDASH_MENUITEM_H
 #define FOODDASH_MENUITEM_H
 
 
+#include <iostream>
+#include <string>
+
+
 class MenuItem {
+
 private:
+
     std::string itemName;
-    float itemPrice;
+    double itemPrice;
+
 
 public:
-    MenuItem(const std::string& name, float price);
 
-    std::string getItemName();
-    float getItemPrice();
+    MenuItem( const std::string& name, const double& price );
+
+    std::string getItemName() const;
+    double getItemPrice() const;
+
 };
 
 
