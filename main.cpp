@@ -17,23 +17,25 @@ int main() {
     Restaurant chickenRestaurant("Fried Chicken Place");
     Restaurant caveRestaurant("Suspicious Cave");
 
-    MenuItem chickenSandwich( "Chicken Sandwich", 12.99 );
-    MenuItem fries( "Fries", 4.99 );
-    MenuItem softDrink( "Soda", 2.49 );
-    MenuItem grilledBulborb( "Grilled Bulborb", 10000.99 );
+    //{
 
-    chickenRestaurant.addMenuItem(chickenSandwich);
-    chickenRestaurant.addMenuItem(fries);
-    chickenRestaurant.addMenuItem(softDrink);
+        MenuItem chickenSandwich("Chicken Sandwich", 12.99);
+        MenuItem fries("Fries", 4.99);
+        MenuItem softDrink("Soda", 2.49);
+        MenuItem grilledBulborb("Grilled Bulborb", 10000.99);
 
-    caveRestaurant.addMenuItem(grilledBulborb);
-    caveRestaurant.addMenuItem(softDrink);
+        chickenRestaurant.addMenuItem(chickenSandwich);
+        chickenRestaurant.addMenuItem(fries);
+        chickenRestaurant.addMenuItem(softDrink);
+
+        caveRestaurant.addMenuItem(grilledBulborb);
+        caveRestaurant.addMenuItem(softDrink);
+
+    //}
 
     chickenRestaurant.displayMenu();
     caveRestaurant.displayMenu();
 
-    // menuItems are stored in orders are stored in restaurants,
-    // how do I want to create them, store them, and access them?
 
     Order* tongsOrder = chickenRestaurant.makeOrder("Tong");
     tongsOrder->addOrderItem(chickenSandwich);
@@ -51,8 +53,30 @@ int main() {
     louiesOrder->addOrderItem(grilledBulborb);
     louiesOrder->addOrderItem(softDrink);
 
-    chickenRestaurant.displayUnfilledOrders();
-    caveRestaurant.displayUnfilledOrders();
+    chickenRestaurant.displayIncompleteOrders();
+    chickenRestaurant.displayUndeliveredOrders();
+    caveRestaurant.displayIncompleteOrders();
+    caveRestaurant.displayUndeliveredOrders();
+
+
+    chickenRestaurant.markComplete(tongsOrder);
+    caveRestaurant.markComplete(louiesOrder);
+    std::cout << "--Completing Tong's order, Louie's order--\n\n";
+
+    chickenRestaurant.displayIncompleteOrders();
+    chickenRestaurant.displayUndeliveredOrders();
+    caveRestaurant.displayIncompleteOrders();
+    caveRestaurant.displayUndeliveredOrders();
+
+
+    caveRestaurant.markComplete(olimarsOrder);
+    caveRestaurant.markDelivered(louiesOrder);
+    std::cout << "--Completing Olimar's order, delivering Louie's Order--\n\n";
+
+    chickenRestaurant.displayIncompleteOrders();
+    chickenRestaurant.displayUndeliveredOrders();
+    caveRestaurant.displayIncompleteOrders();
+    caveRestaurant.displayUndeliveredOrders();
 
 }
 
@@ -90,7 +114,7 @@ int main() {
    //    std::cout << i.getItemName() << std::endl;
    restaurant.markDelivered(order3);
    std::cout << restaurant.totalRevenue() << std::endl;
-    restaurant.displayUnfilledOrders();
+    restaurant.displayIncompleteOrders();
 
 
 }

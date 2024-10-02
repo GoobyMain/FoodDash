@@ -40,7 +40,8 @@ public:
 
     double totalRevenue() const;
     void displayMenu() const;
-    void displayUnfilledOrders() const;
+    void displayIncompleteOrders() const;
+    void displayUndeliveredOrders() const;
 
 };
 
