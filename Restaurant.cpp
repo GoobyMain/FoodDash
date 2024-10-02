@@ -100,7 +100,7 @@ void Restaurant::displayMenu() const {
     std::cout << this->name << " Menu:\n";
 
     // print name and price for all items in menu
-    for (auto & item : menu) {
+    for ( auto& item : menu ) {
 
         std::cout << std::left << std::setw(30) << item.getItemName()
                   << item.getItemPrice() << "\n";
@@ -112,14 +112,14 @@ void Restaurant::displayMenu() const {
 }
 
 // display details for all orders yet not completed
-void Restaurant::displayUnfilledOrders() const {
+void Restaurant::displayIncompleteOrders() const {
 
     // track if orders contains any incomplete orders
     bool incompleteOrdersExist = false;
 
 
     // print restaurant name once
-    std::cout << this->name << " Unfulfilled Orders:\n\n";
+    std::cout << this->name << " Incomplete Orders:\n\n";
 
     // for each incomplete order, display details
     for ( auto & order : orders ) {
@@ -141,6 +141,49 @@ void Restaurant::displayUnfilledOrders() const {
     // print this since nothing prints when there's no incomplete orders
     if ( !incompleteOrdersExist ) {
         std::cout << "All orders completed\n\n";
+    }
+
+}
+
+// display details for all delivery orders yet not delivered
+void Restaurant::displayUndeliveredOrders() const {
+
+    // track if orders contains any undelivered orders
+    bool undeliveredOrdersExist = false;
+
+
+    // print restaurant name once
+    std::cout << this->name << " Undelivered Orders:\n\n";
+
+    // for each undelivered delivery order, display details
+    for ( auto& order : orders ) {
+
+        // only delivery orders will cast, parent class orders will cast to nullptr
+        DeliveryOrder* tempOrder = dynamic_cast<DeliveryOrder*> (order);
+
+        // if order is not a delivery order, skip it
+        if ( tempOrder == nullptr ) {
+
+            continue;
+
+        // if order is delivered, skip it
+        } else if ( tempOrder->getOrderDelivered() ) {
+
+            continue;
+
+        } else {
+
+            undeliveredOrdersExist = true;
+
+            order->displayOrder();
+
+        }
+
+    }
+
+    // print this since nothing prints when there's no undelivered orders
+    if ( !undeliveredOrdersExist ) {
+        std::cout << "All orders delivered\n\n";
     }
 
 }
