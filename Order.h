@@ -1,13 +1,11 @@
-//
-// Created by Admin on 9/4/2024.
-//
-
 #ifndef FOODDASH_ORDER_H
 #define FOODDASH_ORDER_H
 
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <iomanip>
 
 #include "MenuItem.h"
 
@@ -18,25 +16,27 @@ protected:
 
     inline static unsigned int nextOrderNumber = 1;
 
-    std::string ordererName;
+    std::string orderName;
     unsigned int orderNumber;
+    std::vector<MenuItem> orderItems;
+    double orderTotalPrice;
     bool orderCompleted;
 
 
 public:
 
-    std::vector<MenuItem> orderItems;
-
-    Order( std::string name );
+    Order( const std::string& name );
     Order();
 
-    std::string getOrderName();
-    int getOrderNumber();
-    std::vector<MenuItem> getOrderItems();
-    bool getOrderCompleted();
+    std::string getOrderName() const;
+    int getOrderNumber() const;
+    std::vector<MenuItem> getOrderItems() const;
+    bool getOrderCompleted() const;
 
-    float totalPrice();
+    void addOrderItem( MenuItem item );
+    double totalPrice() const;
     void completeOrder();
+    virtual void displayOrder() const;
 
 };
 

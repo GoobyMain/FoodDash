@@ -1,57 +1,47 @@
-//
-// Created by Admin on 9/4/2024.
-//
-
-#include "Order.h"
-#include "MenuItem.h"
-#include "DeliveryOrder.h"
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_map>
-using std::vector, std::string, std::unordered_map;
 #ifndef FOODDASH_RESTAURANT_H
 #define FOODDASH_RESTAURANT_H
 
 
+#include <string>
+#include <vector>
+#include <iostream>
+
+#include "Order.h"
+#include "MenuItem.h"
+#include "DeliveryOrder.h"
+
+
 class Restaurant {
-    private:
-    string name;
-    vector<MenuItem> theMenu;
-    vector<Order> completedOrders;
-    vector<Order> theOrders;
+
+private:
+    
+    std::string name;
+    std::vector<MenuItem> menu;
+    std::vector<Order*> orders;
+    double restaurantTotalRevenue;
 
 
-    public:
-    Restaurant(string stand);
-    string getName();
+public:
 
-    // new items can be added whenever
-    void addMenuItem(MenuItem object);
+    Restaurant( const std::string& name );
 
-    //Only names that match items on the restaurants menu should be added
-    // Order Objects take MenuItem objects and not just the same copy.
+    std::string getName();
 
-    void makeOrder(Order&, vector<MenuItem>);
+    void addMenuItem( MenuItem item );
 
-    //does what makeOrder do, but also takes an address and creates the
-    //correct type of deliveryOrder object and fills data members appropriately
-    void makeDeliveryOrder(Order&, vector<MenuItem>, string address);
+    Order* makeOrder( std::string orderName );
+    Order* makeOrder();
+    DeliveryOrder* makeDeliveryOrder( std::string orderName, std::string address );
+    DeliveryOrder* makeDeliveryOrder( std::string address );
 
-    // takes both order and dOrder and mark complete
-    void markComplete(Order&);
+    void markComplete( Order*& );
+    void markComplete( DeliveryOrder*& );
+    void markDelivered( DeliveryOrder*& );
 
-    // takes dOrder and mark delivered
-    void markDelivered(DeliveryOrder&);
+    double totalRevenue() const;
+    void displayMenu() const;
+    void displayUnfilledOrders() const;
 
-    // return total revenue from all orders marked complete
-    double totalRevenue();
-
-    // display the name of the restaurant and menu item and prices available
-    void displayMenu();
-
-    // display details for all orders yet not completed
-    void displayUnfilledOrders();
 };
 
 
